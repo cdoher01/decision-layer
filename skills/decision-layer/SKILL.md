@@ -9,25 +9,32 @@ Use this skill to put the `decision-layer` CLI in front of an agentic task. The 
 
 ## Setup
 
-1. Locate the repository root by walking up from this `SKILL.md` until `pyproject.toml` and `decision_layer/` are present.
-2. If `decision --help` works, use the installed command.
-3. If `decision --help` is unavailable, install from the repository root:
+1. If `decision --help` works, use the installed command.
+2. If `decision --help` is unavailable and this skill is inside a full repo checkout, locate the repository root by walking up from this `SKILL.md` until `pyproject.toml` and `decision_layer/` are present. Install from that repository root:
 
 ```bash
 python -m pip install .
 ```
 
-4. Verify:
+3. If the full repo is not present, install the CLI from GitHub:
+
+```bash
+python -m pip install "git+https://github.com/cdoher01/decision-layer.git"
+```
+
+4. Verify the CLI:
 
 ```bash
 decision --help
 ```
 
-If install is not allowed in the current environment, run the module directly from the repo root:
+If package installation is not allowed in the current environment and the full repo is present, run the module directly from the repo root:
 
 ```bash
 python -m decision_layer.cli --help
 ```
+
+If neither package installation nor a full repo checkout is available, stop and report that Decision Layer cannot be activated in this environment.
 
 ## Workflow
 
