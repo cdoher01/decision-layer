@@ -84,6 +84,29 @@ decision run --harness shell --goal "Run unit tests" -- python -m unittest
 
 No vendor is required. The wrapper records the contract, the bounded action, the result, and the verification state.
 
+## Agent-Ready Surfaces
+
+Decision Layer now ships three repo-native surfaces:
+
+- `AGENTS.md` tells agents the rule: classify vague work before executing, stop on L1, and review traces before claiming completion.
+- MCP gives agents the tool: `decision-mcp` exposes `classify_goal`, `create_contract`, `run_bounded_command`, and `review_trace`.
+- GitHub Actions enforces the rule automatically: pull requests with L1-style vague titles fail the Decision Layer gate until the objective is clearer.
+
+After install, run the MCP server over stdio:
+
+```bash
+decision-mcp
+```
+
+For Codex or other MCP clients, configure the command as:
+
+```toml
+[mcp_servers.decision-layer]
+command = "decision-mcp"
+```
+
+The Codex plugin manifest also points to `.mcp.json`, so plugin installs can expose the same MCP tools.
+
 ## The Three Decision Layers
 
 | Layer | Use When | Decision Layer Behavior |

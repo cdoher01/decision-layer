@@ -25,6 +25,7 @@ classifiers = [
 
 [project.scripts]
 decision = "decision_layer.cli:main"
+decision-mcp = "decision_layer.mcp:main"
 
 [tool.setuptools.packages.find]
 include = ["decision_layer*"]

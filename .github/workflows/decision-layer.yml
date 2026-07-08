@@ -1,0 +1,42 @@
+name: Decision Layer
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+  workflow_dispatch:
+
+jobs:
+  decision-layer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install package
+        run: python -m pip install .
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests
+
+      - name: Run execution smoke test
+        run: |
+          mkdir -p .decision-layer-smoke
+          decision run --goal "Create a file listing the current directory" --output-dir .decision-layer-smoke -- ls
+          decision review .decision-layer-smoke/decision_trace.json
+
+      - name: Enforce PR decision clarity
+        if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          decision contract --goal "$PR_TITLE" --out .decision-layer-pr-contract.json
+          python .github/scripts/decision_pr_gate.py .decision-layer-pr-contract.json
+

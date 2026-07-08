@@ -7,6 +7,8 @@ description: Use Decision Layer to govern agentic work with a decision contract,
 
 Use this skill to put the `decision-layer` CLI in front of an agentic task. The CLI is the deterministic path; use it rather than manually recreating contracts or traces.
 
+If the Decision Layer MCP server is available, prefer its structured tools for classification, contracts, bounded runs, and trace review. Use the CLI path below when MCP is not configured.
+
 ## Setup
 
 1. If `decision --help` works, use the installed command.
@@ -35,6 +37,12 @@ python -m decision_layer.cli --help
 ```
 
 If neither package installation nor a full repo checkout is available, stop and report that Decision Layer cannot be activated in this environment.
+
+For MCP clients, the package exposes a stdio server:
+
+```bash
+decision-mcp
+```
 
 ## Workflow
 

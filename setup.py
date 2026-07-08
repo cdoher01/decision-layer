@@ -11,6 +11,11 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(include=["decision_layer", "decision_layer.*"]),
     python_requires=">=3.9",
-    entry_points={"console_scripts": ["decision=decision_layer.cli:main"]},
+    entry_points={
+        "console_scripts": [
+            "decision=decision_layer.cli:main",
+            "decision-mcp=decision_layer.mcp:main",
+        ]
+    },
     license="MIT",
 )

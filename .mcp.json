@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "decision-layer": {
+      "command": "python",
+      "args": [
+        "-m",
+        "decision_layer.mcp"
+      ]
+    }
+  }
+}
+

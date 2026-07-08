@@ -16,14 +16,16 @@
     "governance"
   ],
   "skills": "./skills/",
+  "mcpServers": ".mcp.json",
   "interface": {
     "displayName": "Decision Layer",
     "shortDescription": "Add a governed decision layer to any AI agent in one command.",
-    "longDescription": "Decision Layer packages a Codex skill and CLI for creating decision contracts, wrapping commands in bounded agentic loops, and emitting auditable traces.",
+    "longDescription": "Decision Layer packages a Codex skill, MCP server, and CLI for creating decision contracts, wrapping commands in bounded agentic loops, and emitting auditable traces.",
     "developerName": "Connor Doherty",
     "category": "Productivity",
     "capabilities": [
       "CLI",
+      "MCP",
       "Governance",
       "Automation"
     ],
