@@ -182,6 +182,9 @@ def trace_markdown(trace: dict[str, Any]) -> str:
     steps = "\n".join(
         f"- **{step['phase']}**: {step['summary']}" for step in trace.get("loop", [])
     )
+    assumptions = "\n".join(f"- {item}" for item in trace.get("assumptions", [])) or "- none"
+    evidence = "\n".join(f"- {item}" for item in trace.get("evidence", [])) or "- none"
+    actions = "\n".join(f"- {item}" for item in trace.get("actions", [])) or "- none"
     result = trace.get("result") or {}
     return f"""# Decision Trace
 
@@ -193,6 +196,15 @@ def trace_markdown(trace: dict[str, Any]) -> str:
 
 ## Loop
 {steps}
+
+## Assumptions
+{assumptions}
+
+## Evidence
+{evidence}
+
+## Actions
+{actions}
 
 ## Result
 - **Status:** {trace['status']}
@@ -284,15 +296,40 @@ def _trace(
     started_at: str,
 ) -> dict[str, Any]:
     uncertainty = "None recorded by the wrapper." if verified else "Human review required before downstream execution."
+    assumptions = [
+        "The provided goal is the authoritative objective unless the contract overrides it.",
+        "Layer classification is heuristic unless the contract explicitly sets the layer.",
+        "A successful command exit is the default V1 verification signal for execution tasks.",
+    ]
+    if contract.layer == LAYER_1:
+        assumptions.append("Vague improvement goals require direction-finding before execution.")
+    evidence = ["decision contract generated and checked for required fields"]
+    if result:
+        evidence.append(f"command exit code: {result.get('exit_code')}")
+        if result.get("stdout"):
+            evidence.append("stdout captured")
+        if result.get("stderr"):
+            evidence.append("stderr captured")
+    else:
+        evidence.append("no command result because execution did not run")
+    actions = [step["summary"] for step in loop if step["phase"] in {"select", "act", "observe", "decide"}]
     return {
         "schema_version": "0.1",
         "started_at": started_at,
+        "objective": contract.objective,
         "contract": asdict(contract),
         "loop": loop,
+        "assumptions": assumptions,
+        "evidence": evidence,
+        "actions": actions,
         "result": result,
         "status": status,
         "stop_reason": stop_reason,
         "verified": verified,
+        "verification": {
+            "verified": verified,
+            "method": "successful command exit" if result else "not run",
+        },
         "remaining_uncertainty": uncertainty,
     }
 

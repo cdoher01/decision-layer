@@ -56,6 +56,8 @@ class DecisionLayerTests(unittest.TestCase):
             trace = json.loads((Path(tmp) / "decision_trace.json").read_text())
             for key in ["objective", "layer", "authority", "constraints", "evidence_bar", "allowed_actions", "budget", "stopping_rule"]:
                 self.assertIn(key, trace["contract"])
+            for key in ["objective", "assumptions", "evidence", "actions", "verification", "stop_reason", "remaining_uncertainty"]:
+                self.assertIn(key, trace)
 
 
 if __name__ == "__main__":
