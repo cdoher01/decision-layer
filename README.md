@@ -47,6 +47,18 @@ status: needs_decision
 stop_reason: decision_required: L1 direction-finding must clarify problem, metric, and evidence bar before execution
 ```
 
+## Use with Codex
+
+Paste this into Codex:
+
+```text
+Install https://github.com/cdoher01/decision-layer as a Codex skill and use it to govern this task.
+```
+
+The repo includes a native Codex skill at `codex/skill/decision-layer/SKILL.md`, a plugin-packaged copy at `skills/decision-layer/SKILL.md`, and a plugin manifest at `.codex-plugin/plugin.json`. The skill tells Codex to install and use the `decision` CLI as the deterministic execution path.
+
+Use the CLI directly when you want to govern your own shell commands. Use the Codex skill when you want Codex to set up the CLI, create the contract, run the bounded wrapper, review the trace, and stop before execution when the task is really L1 direction-finding.
+
 ## Run a Concrete Execution Task
 
 ```bash

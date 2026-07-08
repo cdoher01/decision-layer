@@ -1,0 +1,38 @@
+{
+  "name": "decision-layer",
+  "version": "0.1.0",
+  "description": "Govern agentic work with decision contracts, bounded command wrappers, and auditable traces.",
+  "author": {
+    "name": "Connor Doherty",
+    "url": "https://github.com/cdoher01"
+  },
+  "homepage": "https://github.com/cdoher01/decision-layer",
+  "repository": "https://github.com/cdoher01/decision-layer",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "decision-architecture",
+    "codex",
+    "governance"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Decision Layer",
+    "shortDescription": "Add a governed decision layer to any AI agent in one command.",
+    "longDescription": "Decision Layer packages a Codex skill and CLI for creating decision contracts, wrapping commands in bounded agentic loops, and emitting auditable traces.",
+    "developerName": "Connor Doherty",
+    "category": "Productivity",
+    "capabilities": [
+      "CLI",
+      "Governance",
+      "Automation"
+    ],
+    "websiteURL": "https://github.com/cdoher01/decision-layer",
+    "defaultPrompt": [
+      "Govern this task with Decision Layer.",
+      "Create a decision contract before executing.",
+      "Wrap this command with a bounded trace."
+    ],
+    "brandColor": "#111827"
+  }
+}
