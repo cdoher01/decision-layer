@@ -1,0 +1,12 @@
+# Example OpenHands/OpenClaw-style wrapper.
+objective: "Fix failing CI"
+harness: "openhands"
+authority: "human approval required for dependency or workflow changes"
+evidence_bar: "CI failure reproduced, fix applied, tests rerun"
+allowed_actions:
+  - shell
+budget: {"max_steps": 1, "timeout_seconds": 900, "max_cost": "not_set"}
+stopping_rule: "stop when CI command passes, failure is reproduced but unresolved, or a boundary is hit"
+constraints:
+  - avoid unrelated refactors
+  - record commands and test output

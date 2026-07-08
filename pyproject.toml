@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "decision-layer"
+version = "0.1.0"
+description = "A governed decision layer for any AI agent or command-line harness."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+  { name = "Connor Doherty" }
+]
+keywords = ["agents", "ai", "governance", "decision-architecture", "llm"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Software Development :: Build Tools",
+]
+
+[project.scripts]
+decision = "decision_layer.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["decision_layer*"]

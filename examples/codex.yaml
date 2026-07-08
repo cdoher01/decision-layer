@@ -1,0 +1,12 @@
+# Example Codex wrapper.
+objective: "Implement the requested tests"
+harness: "codex"
+authority: "human approval required for scope changes or destructive commands"
+evidence_bar: "tests run, diff reviewed, remaining uncertainty named"
+allowed_actions:
+  - shell
+budget: {"max_steps": 1, "timeout_seconds": 600, "max_cost": "not_set"}
+stopping_rule: "stop when tests pass or Codex reports a blocker"
+constraints:
+  - preserve existing user changes
+  - do not broaden scope beyond the goal

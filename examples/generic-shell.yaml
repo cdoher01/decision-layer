@@ -1,0 +1,12 @@
+# Wrap any shell command.
+objective: "Create a file listing the current directory"
+harness: "shell"
+authority: "human approval required for irreversible actions"
+evidence_bar: "successful command exit and trace review"
+allowed_actions:
+  - shell
+budget: {"max_steps": 1, "timeout_seconds": 60, "max_cost": "not_set"}
+stopping_rule: "stop after one verified command or any nonzero exit"
+constraints:
+  - do not run destructive commands
+  - record stdout, stderr, and exit code

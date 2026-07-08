@@ -1,0 +1,12 @@
+# Example Claude Code wrapper.
+objective: "Review this codebase for auth flow risks"
+harness: "claude-code"
+authority: "human approval required before applying patches"
+evidence_bar: "findings include file references, severity, and verification notes"
+allowed_actions:
+  - shell
+budget: {"max_steps": 1, "timeout_seconds": 600, "max_cost": "not_set"}
+stopping_rule: "stop after review output or any tool boundary"
+constraints:
+  - do not modify files during review-only work
+  - separate evidence from recommendations
