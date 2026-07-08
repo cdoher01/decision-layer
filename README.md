@@ -115,6 +115,29 @@ The Codex plugin manifest also points to `.mcp.json`, so plugin installs can exp
 | L2 solution-selection | Problem is known, approach is unclear | Require assumptions, alternatives, and evidence before execution |
 | L3 execution | Objective and approach are clear | Run a bounded command and verify completion |
 
+## Concrete Decision Examples
+
+The same broad project often contains decisions at all three levels. The level depends on what is still undecided.
+
+- Product onboarding:
+  - L1: Decide whether the real problem is signup drop-off, first-run confusion, low-quality traffic, or weak trial-to-paid conversion. Pick the target user, metric, baseline, and evidence bar.
+  - L2: Choose between shortening signup, adding an onboarding checklist, rewriting lifecycle emails, changing traffic quality, or improving empty states.
+  - L3: Implement the selected checklist copy, add the `checklist_started` event, and run the onboarding tests.
+- Engineering reliability:
+  - L1: Decide whether "make CI better" means faster feedback, fewer flaky failures, stricter release blocking, or lower infrastructure cost.
+  - L2: Choose between quarantining flaky tests, pinning a dependency, splitting slow jobs, increasing timeouts, or rewriting a brittle integration test.
+  - L3: Pin the selected dependency, update the workflow file, rerun CI, and verify the failing job passes.
+- Customer operations:
+  - L1: Decide whether the team should optimize first-response time, resolution quality, escalation rate, renewal risk, or support cost.
+  - L2: Choose between new routing rules, a revised priority rubric, agent macros, self-serve docs, or a manager review queue.
+  - L3: Add the selected routing rule, update the CRM field mapping, and test it on five sample tickets.
+- Research or strategy:
+  - L1: Decide which market, buyer, or use case is worth investigating and what evidence would change the strategy.
+  - L2: Choose between customer interviews, survey research, usage analysis, competitive research, or a prototype test.
+  - L3: Schedule five interviews, summarize the notes, and update the evidence log.
+
+Rule of thumb: L1 decides what success means, L2 decides which path to take, and L3 carries out a chosen path under clear constraints.
+
 ## Commands
 
 ```bash
